@@ -1,0 +1,41 @@
+cmake_minimum_required(VERSION 3.9)
+project(symbiote)
+
+set(CMAKE_CXX_STANDARD 14)
+
+# ECS library
+add_library(symbiote
+        src/core/entitymanager.cpp
+        include/core/entitymanager.hpp
+        src/core/system.cpp
+        include/core/system.hpp
+        src/core/entity.cpp
+        include/core/entity.hpp
+        src/core/component.cpp
+        include/core/component.hpp)
+target_include_directories(symbiote
+        PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+        PRIVATE src)
+target_compile_options(symbiote PRIVATE "-Wall")
+target_compile_options(symbiote PRIVATE "-ansi")
+target_compile_options(symbiote PRIVATE "-pedantic")
+target_compile_definitions(symbiote PUBLIC _DEBUG=1)
+
+# ECS tests
+enable_testing()
+add_executable(symbiote_test
+        tests/test_systems/systems.cpp
+        tests/test_systems/systems.hpp
+        tests/test_components/components.cpp
+        tests/test_components/components.hpp
+        tests/test_systems.cpp
+        tests/test_entities.cpp
+        tests/test_lifecycle.cpp
+        tests/test_performance.cpp
+        tests/test_entitymanager.cpp)
+add_subdirectory(tests/googletest)
+target_link_libraries(symbiote_test symbiote gtest_main)
+target_include_directories(symbiote_test PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
+target_include_directories(symbiote_test PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/tests/1.8.0/googletest/include>)
