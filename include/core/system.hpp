@@ -24,9 +24,6 @@ namespace Symbiote {
         public:
             virtual ~System() = 0;
 
-        public:
-            virtual auto Update() -> void = 0;
-
         protected:
             virtual auto OnLoad() -> void;
             virtual auto OnResolveDependencies() -> void;

@@ -6,8 +6,3 @@ WorldStateSystem::WorldStateSystem(char* inputState, char* networkState) : mInpu
 {
 
 }
-
-auto WorldStateSystem::Update() -> void
-{
-
-}

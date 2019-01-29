@@ -1,7 +1,6 @@
 #pragma once
 
-#include "glm/vec3.hpp"
-#include "glm/ext/quaternion_float.hpp"
+#include "glm/vec2.hpp"
 
 #include "core/component.hpp"
 
@@ -12,10 +11,10 @@ namespace Symbiote {
         public:
             DECLARE_COMPONENT(Symbiote::Game::TransformComponent);
 
-        private:
-            glm::vec3 mScale = {1, 1, 1};
-            glm::vec3 mPosition = {0, 0, 0};
-            glm::quat mRotation = {};
+        public:
+            float mRotation;
+            glm::vec2 mScale = {1, 1};
+            glm::vec2 mPosition = {0, 0};
         };
 
     }

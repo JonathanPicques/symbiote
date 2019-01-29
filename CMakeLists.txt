@@ -10,17 +10,23 @@ add_library(symbiote
         src/core/entity.cpp                     include/core/entity.hpp
         src/core/component.cpp                  include/core/component.hpp
 
+        src/game/components/rigidbody.cpp       include/game/components/rigidbody.hpp
         src/game/components/transform.cpp       include/game/components/transform.hpp
+        src/game/systems/physics.cpp            include/game/systems/physics.hpp
 )
 target_include_directories(symbiote PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include> PRIVATE src)
 target_compile_options(symbiote PRIVATE "-Wall")
 target_compile_options(symbiote PRIVATE "-ansi")
 target_compile_definitions(symbiote PUBLIC _DEBUG=1)
 
-# Vendors
+# Symbiote vendors
 add_subdirectory(vendors/glm/glm)
 target_link_libraries(symbiote glm_static)
 target_include_directories(symbiote PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/vendors/glm>)
+
+# Symbiote main
+add_executable(symbiote_main src/main.cpp)
+target_link_libraries(symbiote_main symbiote)
 
 # Symbiote tests
 enable_testing()
