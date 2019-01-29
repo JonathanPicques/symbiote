@@ -6,7 +6,7 @@ DEFINE_COMPONENT(DummyComponent);
 DEFINE_COMPONENT(PhysicsComponent);
 DEFINE_COMPONENT(TransformComponent);
 
-std::unique_ptr<EntityManager> CreateEntityManager()
+auto CreateEntityManager() -> std::unique_ptr<EntityManager>
 {
     auto manager = std::make_unique<EntityManager>();
     manager->RegisterComponent<DummyComponent>();

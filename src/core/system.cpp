@@ -2,17 +2,17 @@
 
 DEFINE_ROOT_SYSTEM(System);
 
-System::~System() // NOLINT
+System::~System()
 {
 
 }
 
-void System::OnLoad()
+auto System::OnLoad() -> void
 {
     OnResolveDependencies();
 }
 
-void System::OnResolveDependencies()
+auto System::OnResolveDependencies() -> void
 {
 
 }

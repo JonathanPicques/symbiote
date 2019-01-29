@@ -6,7 +6,7 @@
 
 #include "core/entitymanager.hpp"
 
-Entity EntityManager::CreateEntity()
+auto EntityManager::CreateEntity() -> Entity
 {
     Entity::PointerSize index;
     Entity::PointerSize version;
@@ -26,7 +26,7 @@ Entity EntityManager::CreateEntity()
     return { this, index, version };
 }
 
-void EntityManager::DestroyEntity(Entity& entityPointer)
+auto EntityManager::DestroyEntity(Entity& entityPointer) -> void
 {
     AssertEntityPointerValid(entityPointer);
     mVersions[entityPointer.mIndex] += 1;
@@ -34,7 +34,7 @@ void EntityManager::DestroyEntity(Entity& entityPointer)
     mFreeIndexes.push_back(entityPointer.mIndex);
 }
 
-void EntityManager::Serialize(std::ostream& os) const
+auto EntityManager::Serialize(std::ostream& os) const -> void
 {
     for (auto entityPointer : *this)
     {
@@ -50,7 +50,7 @@ void EntityManager::Serialize(std::ostream& os) const
     }
 }
 
-void EntityManager::Deserialize(std::istream& is)
+auto EntityManager::Deserialize(std::istream& is) -> void
 {
     Clear();
     enum class ParsingState
@@ -117,12 +117,12 @@ void EntityManager::Deserialize(std::istream& is)
     }
 }
 
-bool EntityManager::IsEntityPointerValid(const Entity& entityPointer) const
+auto EntityManager::IsEntityPointerValid(const Entity& entityPointer) const -> bool
 {
     return entityPointer.mIndex < mVersions.size() && mVersions[entityPointer.mIndex] == entityPointer.mVersion;
 }
 
-void EntityManager::AssertEntityPointerValid(const Entity& entityPointer) const
+auto EntityManager::AssertEntityPointerValid(const Entity& entityPointer) const -> void
 {
     if (!IsEntityPointerValid(entityPointer))
     {
@@ -132,14 +132,14 @@ void EntityManager::AssertEntityPointerValid(const Entity& entityPointer) const
     }
 }
 
-void EntityManager::EntityConstructComponent(Component* component, const Entity& entityPointer)
+auto EntityManager::EntityConstructComponent(Component* component, const Entity& entityPointer) -> void
 {
     AssertEntityPointerValid(entityPointer);
     component->mEntity = entityPointer;
     component->OnLoad();
 }
 
-void EntityManager::EntityResolveComponentDependencies(const Entity& entityPointer)
+auto EntityManager::EntityResolveComponentDependencies(const Entity& entityPointer) -> void
 {
     AssertEntityPointerValid(entityPointer);
     auto& components = mEntityComponents[entityPointer.mIndex];
@@ -150,12 +150,12 @@ void EntityManager::EntityResolveComponentDependencies(const Entity& entityPoint
 }
 
 #if defined(_DEBUG)
-bool EntityManager::IsComponentRegistered(const std::string& componentName) const
+auto EntityManager::IsComponentRegistered(const std::string& componentName) const -> bool
 {
     return mRegisteredComponents.find(componentName) != mRegisteredComponents.end();
 }
 
-void EntityManager::AssertComponentRegistered(const std::string& componentName) const
+auto EntityManager::AssertComponentRegistered(const std::string& componentName) const -> void
 {
     if (!IsComponentRegistered(componentName))
     {
@@ -164,27 +164,27 @@ void EntityManager::AssertComponentRegistered(const std::string& componentName) 
 }
 #endif
 
-EntityManager::Iterator EntityManager::begin()
+auto EntityManager::begin() -> EntityManager::Iterator
 {
     return { *this, 0 };
 }
 
-EntityManager::Iterator EntityManager::end()
+auto EntityManager::end() -> EntityManager::Iterator
 {
     return { *this, static_cast<Entity::PointerSize>(mEntityComponents.size()) };
 }
 
-EntityManager::ConstIterator EntityManager::begin() const
+auto EntityManager::begin() const -> EntityManager::ConstIterator
 {
     return { *this, 0 };
 }
 
-EntityManager::ConstIterator EntityManager::end() const
+auto EntityManager::end() const -> EntityManager::ConstIterator
 {
     return { *this, static_cast<Entity::PointerSize>(mEntityComponents.size()) };
 }
 
-void EntityManager::Clear()
+auto EntityManager::Clear() -> void
 {
     mNextIndex = 0;
     mVersions.clear();
@@ -192,7 +192,7 @@ void EntityManager::Clear()
     mEntityComponents.clear();
 }
 
-std::size_t EntityManager::Size() const
+auto EntityManager::Size() const -> std::size_t
 {
     return mEntityComponents.size() - mFreeIndexes.size();
 }

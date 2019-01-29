@@ -2,27 +2,27 @@
 
 DEFINE_ROOT_COMPONENT(Component);
 
-Component::~Component() // NOLINT
+Component::~Component()
 {
 
 }
 
-void Component::OnLoad()
+auto Component::OnLoad() -> void
 {
     OnResolveDependencies();
 }
 
-void Component::OnResolveDependencies()
+auto Component::OnResolveDependencies() -> void
 {
 
 }
 
-void Component::Serialize(std::ostream&) const
+auto Component::Serialize(std::ostream&) const -> void
 {
 
 }
 
-void Component::Deserialize(std::istream&)
+auto Component::Deserialize(std::istream&) -> void
 {
 
 }

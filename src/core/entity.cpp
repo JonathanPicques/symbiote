@@ -11,32 +11,32 @@ Entity::Entity(EntityManager* manager, PointerSize index, PointerSize version) :
 
 }
 
-bool Entity::IsValid() const
-{
-    return mManager != nullptr && mManager->IsEntityPointerValid(*this);
-}
-
 Entity::operator bool() const
 {
     return IsValid();
 }
 
-void Entity::Destroy()
+auto Entity::IsValid() const -> bool
+{
+    return mManager != nullptr && mManager->IsEntityPointerValid(*this);
+}
+
+auto Entity::Destroy() -> void
 {
     mManager->DestroyEntity(*this);
 }
 
-void Entity::ResolveComponentDependencies()
+auto Entity::ResolveComponentDependencies() -> void
 {
     mManager->EntityResolveComponentDependencies(*this);
 }
 
-EntityManager* Entity::GetManager()
+auto Entity::GetManager() -> EntityManager*
 {
     return mManager;
 }
 
-bool operator==(const Entity& a, const Entity& b)
+auto operator==(const Entity& a, const Entity& b) -> bool
 {
     return a.mIndex == b.mIndex && a.mVersion == b.mVersion;
 }

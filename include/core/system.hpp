@@ -22,11 +22,11 @@ public:
     virtual ~System() = 0;
 
 public:
-    virtual void Update() = 0;
+    virtual auto Update() -> void = 0;
 
 protected:
-    virtual void OnLoad();
-    virtual void OnResolveDependencies();
+    virtual auto OnLoad() -> void;
+    virtual auto OnResolveDependencies() -> void;
 
 protected:
     EntityManager* mManager = nullptr;

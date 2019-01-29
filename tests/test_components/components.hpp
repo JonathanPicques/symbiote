@@ -31,22 +31,20 @@ public:
     {}
 
 public:
-    void Serialize(std::ostream& out) const override
+    auto Serialize(std::ostream& out) const -> void override
     {
         static_assert(std::is_pod<decltype(TransformComponent::mData)>::value, "TransformComponent is not POD");
         out.write((char*) &mData, sizeof(mData));
     }
-    void Deserialize(std::istream& is) override
+    auto Deserialize(std::istream& is) -> void override
     {
         static_assert(std::is_pod<decltype(TransformComponent::mData)>::value, "TransformComponent is not POD");
         is.read((char*) &mData, sizeof(mData));
     }
 
 public:
-    float GetX() const
-    { return mData.x; }
-    float GetY() const
-    { return mData.y; }
+    auto GetX() const -> float { return mData.x; }
+    auto GetY() const -> float { return mData.y; }
 
 public:
     struct
@@ -56,4 +54,4 @@ public:
     } mData = {};
 };
 
-std::unique_ptr<EntityManager> CreateEntityManager();
+auto CreateEntityManager() -> std::unique_ptr<EntityManager>;

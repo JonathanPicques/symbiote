@@ -26,44 +26,46 @@ public:
     Entity(EntityManager* manager, PointerSize index, PointerSize version);
 
 public:
-    bool IsValid() const;
     explicit operator bool() const;
 
 public:
+    auto IsValid() const -> bool;
+
+public:
     template<typename C>
-    C* GetComponent();
+    auto GetComponent() -> C*;
     template<typename C>
-    const C* GetComponent() const;
+    auto GetComponent() const -> const C*;
     template<typename C>
-    C* AddComponent();
+    auto AddComponent() -> C*;
     template<typename C>
-    void RemoveComponent();
+    auto RemoveComponent() -> void;
     template<typename C>
-    bool HasComponent() const;
+    auto HasComponent() const -> bool;
     template<typename C1, typename C2, typename ...C>
-    bool HasComponent() const;
+    auto HasComponent() const -> bool;
     template<typename C>
-    bool HasAnyComponent() const;
+    auto HasAnyComponent() const -> bool;
     template<typename C1, typename C2, typename ...C>
-    bool HasAnyComponent() const;
+    auto HasAnyComponent() const -> bool;
 
 public:
     template<typename ...C>
-    bool Any(typename std::common_type<std::function<void(C* ...)>>::type view);
+    auto Any(typename std::common_type<std::function<void(C* ...)>>::type view) -> bool;
     template<typename ...C>
-    bool With(typename std::common_type<std::function<void(C* ...)>>::type view);
+    auto With(typename std::common_type<std::function<void(C* ...)>>::type view) -> bool;
 
 public:
-    void ResolveComponentDependencies();
+    auto ResolveComponentDependencies() -> void;
 
 public:
-    void Destroy();
+    auto Destroy() -> void;
 
 public:
-    EntityManager* GetManager();
+    auto GetManager() -> EntityManager*;
 
 public:
-    friend bool operator==(const Entity& a, const Entity& b);
+    friend auto operator==(const Entity& a, const Entity& b) -> bool;
 
 private:
     EntityManager* mManager = nullptr;

@@ -27,12 +27,12 @@ public:
     virtual ~Component() = 0;
 
 protected:
-    virtual void OnLoad();
-    virtual void OnResolveDependencies();
+    virtual auto OnLoad() -> void;
+    virtual auto OnResolveDependencies() -> void;
 
 protected:
-    virtual void Serialize(std::ostream& os) const;
-    virtual void Deserialize(std::istream& is);
+    virtual auto Serialize(std::ostream& os) const -> void;
+    virtual auto Deserialize(std::istream& is) -> void;
 
 protected:
    Entity mEntity = {};

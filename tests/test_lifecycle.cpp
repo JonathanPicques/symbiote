@@ -7,7 +7,7 @@ class BodyComponent final : public Component
 public:
     DECLARE_COMPONENT(BodyComponent);
 protected:
-    void OnResolveDependencies() final
+    auto OnResolveDependencies() -> void final
     {
         mHeartComponent = mEntity.GetComponent<HeartComponent>();
     }
@@ -21,7 +21,7 @@ class HeartComponent final : public Component
 public:
     DECLARE_COMPONENT(HeartComponent);
 protected:
-    void OnResolveDependencies() final
+    auto OnResolveDependencies() -> void final
     {
         mBodyComponent = mEntity.GetComponent<BodyComponent>();
     }
@@ -35,7 +35,7 @@ class LegMuscleComponent final : public Component
 public:
     DECLARE_COMPONENT(LegMuscleComponent);
 protected:
-    void OnResolveDependencies() final
+    auto OnResolveDependencies() -> void final
     {
         mHeartComponent = mEntity.GetComponent<HeartComponent>();
         mBodyComponent = mEntity.GetComponent<BodyComponent>();
