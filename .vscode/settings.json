@@ -1,7 +1,8 @@
 {
     "files.exclude": {
         "build": true,
-        "tests/googletest": true
+        "vendors": true,
+        "tests/googletest": true,
     },
     "C_Cpp.intelliSenseEngineFallback": "Disabled"
 }

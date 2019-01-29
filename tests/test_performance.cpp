@@ -1,4 +1,4 @@
-#if defined(SYMBIOTE_ECS_BENCHMARK)
+#if defined(SYMBIOTE_BENCHMARK)
 
 #   include <ctime>
 #   include <gtest/gtest.h>

@@ -4,6 +4,7 @@
             "name": "Win64",
             "includePath": [
                 "${workspaceFolder}/**",
+                "${workspaceFolder}/vendors/glm",
                 "${workspaceFolder}/tests/googletest/googletest/include"
             ],
             "defines": [

@@ -3,27 +3,26 @@ project(symbiote)
 
 set(CMAKE_CXX_STANDARD 14)
 
-# ECS library
+# Symbiote library
 add_library(symbiote
-        src/core/entitymanager.cpp
-        include/core/entitymanager.hpp
-        src/core/system.cpp
-        include/core/system.hpp
-        src/core/entity.cpp
-        include/core/entity.hpp
-        src/core/component.cpp
-        include/core/component.hpp)
-target_include_directories(symbiote
-        PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include>
-        PRIVATE src)
+        src/core/entitymanager.cpp              include/core/entitymanager.hpp
+        src/core/system.cpp                     include/core/system.hpp
+        src/core/entity.cpp                     include/core/entity.hpp
+        src/core/component.cpp                  include/core/component.hpp
+
+        src/game/components/transform.cpp       include/game/components/transform.hpp
+)
+target_include_directories(symbiote PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include> PRIVATE src)
 target_compile_options(symbiote PRIVATE "-Wall")
 target_compile_options(symbiote PRIVATE "-ansi")
-target_compile_options(symbiote PRIVATE "-pedantic")
 target_compile_definitions(symbiote PUBLIC _DEBUG=1)
 
-# ECS tests
+# Vendors
+add_subdirectory(vendors/glm/glm)
+target_link_libraries(symbiote glm_static)
+target_include_directories(symbiote PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/vendors/glm>)
+
+# Symbiote tests
 enable_testing()
 add_executable(symbiote_test
         tests/test_systems/systems.cpp
