@@ -6,21 +6,25 @@
 
 #include <core/component.hpp>
 
-class EntityManager;
+namespace Symbiote { 
+    namespace Core {
+        class EntityManager;
+    }
+}
 
-class DummyComponent final : public Component
+class DummyComponent final : public Symbiote::Core::Component
 {
 public:
     DECLARE_COMPONENT(DummyComponent);
 };
 
-class PhysicsComponent final : public Component
+class PhysicsComponent final : public Symbiote::Core::Component
 {
 public:
     DECLARE_COMPONENT(PhysicsComponent);
 };
 
-class TransformComponent final : public Component
+class TransformComponent final : public Symbiote::Core::Component
 {
 public:
     DECLARE_COMPONENT(TransformComponent);
@@ -54,4 +58,4 @@ public:
     } mData = {};
 };
 
-auto CreateEntityManager() -> std::unique_ptr<EntityManager>;
+auto CreateEntityManager() -> std::unique_ptr<Symbiote::Core::EntityManager>;

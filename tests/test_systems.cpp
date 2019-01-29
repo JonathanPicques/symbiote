@@ -6,7 +6,7 @@
 
 TEST(System, AddSystem)
 {
-    EntityManager manager;
+    Symbiote::Core::EntityManager manager;
     char inputState = 'i';
     char networkState = 'n';
     auto world = manager.AddSystem<WorldStateSystem>(&inputState, &networkState);
@@ -20,7 +20,7 @@ TEST(System, AddSystem)
 
 TEST(System, RemoveSystem)
 {
-    EntityManager manager;
+    Symbiote::Core::EntityManager manager;
     EXPECT_ANY_THROW((manager.RemoveSystem<WorldStateSystem>()));
     EXPECT_ANY_THROW((manager.RemoveSystem<WorldStateSystem>()));
     manager.AddSystem<WorldStateSystem>(nullptr, nullptr);

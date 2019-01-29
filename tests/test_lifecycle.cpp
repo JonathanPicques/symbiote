@@ -2,7 +2,7 @@
 
 #include <core/entitymanager.hpp>
 
-class BodyComponent final : public Component
+class BodyComponent final : public Symbiote::Core::Component
 {
 public:
     DECLARE_COMPONENT(BodyComponent);
@@ -16,7 +16,7 @@ public:
 };
 DEFINE_COMPONENT(BodyComponent);
 
-class HeartComponent final : public Component
+class HeartComponent final : public Symbiote::Core::Component
 {
 public:
     DECLARE_COMPONENT(HeartComponent);
@@ -30,7 +30,7 @@ public:
 };
 DEFINE_COMPONENT(HeartComponent);
 
-class LegMuscleComponent final : public Component
+class LegMuscleComponent final : public Symbiote::Core::Component
 {
 public:
     DECLARE_COMPONENT(LegMuscleComponent);
@@ -48,7 +48,7 @@ DEFINE_COMPONENT(LegMuscleComponent);
 
 TEST(Lifecycle, Dependency_Manual_Lifecycle)
 {
-    EntityManager manager;
+    Symbiote::Core::EntityManager manager;
     manager.RegisterComponent<BodyComponent>();
     manager.RegisterComponent<HeartComponent>();
     manager.RegisterComponent<LegMuscleComponent>();
@@ -75,7 +75,7 @@ TEST(Lifecycle, Dependency_Manual_Lifecycle)
 
 TEST(Lifecycle, Dependency_Automatic_Lifecycle)
 {
-    EntityManager manager;
+    Symbiote::Core::EntityManager manager;
     manager.RegisterComponent<BodyComponent>();
     manager.RegisterComponent<HeartComponent>();
     manager.RegisterComponent<LegMuscleComponent>();
@@ -94,7 +94,7 @@ TEST(Lifecycle, Dependency_Automatic_Lifecycle)
 
 TEST(Lifecycle, Dependency_Mixed_Manual_Automatic_Lifecycle)
 {
-    EntityManager manager;
+    Symbiote::Core::EntityManager manager;
     manager.RegisterComponent<BodyComponent>();
     manager.RegisterComponent<HeartComponent>();
     manager.RegisterComponent<LegMuscleComponent>();

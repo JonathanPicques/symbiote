@@ -33,7 +33,7 @@ TEST(Entities, CreateDestroyEntities)
     EXPECT_FALSE(entity2);
 
     // invalid entity
-    EXPECT_FALSE(Entity(manager.get()));
+    EXPECT_FALSE(Symbiote::Core::Entity(manager.get()));
 }
 
 TEST(Components, AddComponent)
@@ -159,7 +159,7 @@ TEST(Entity, SparseRepartitionStart)
     auto entity2 = manager->CreateEntity();
     auto entity3 = manager->CreateEntity();
     entity1.Destroy();
-    std::vector<Entity> entities;
+    std::vector<Symbiote::Core::Entity> entities;
     for (auto entity : *manager)
     {
         entities.emplace_back(entity);
@@ -174,7 +174,7 @@ TEST(Entity, SparseRepartitionMiddle)
     auto entity2 = manager->CreateEntity();
     auto entity3 = manager->CreateEntity();
     entity2.Destroy();
-    std::vector<Entity> entities;
+    std::vector<Symbiote::Core::Entity> entities;
     for (auto entity : *manager)
     {
         entities.emplace_back(entity);
@@ -190,7 +190,7 @@ TEST(Entity, SparseRepartitionEnd)
     auto entity2 = manager->CreateEntity();
     auto entity3 = manager->CreateEntity();
     entity3.Destroy();
-    std::vector<Entity> entities;
+    std::vector<Symbiote::Core::Entity> entities;
     for (auto entity : *manager)
     {
         entities.emplace_back(entity);
@@ -211,7 +211,7 @@ TEST(Entity, SparseRepartitionExtreme)
     entity1.Destroy();
     entity3.Destroy();
     entity6.Destroy();
-    std::vector<Entity> entities;
+    std::vector<Symbiote::Core::Entity> entities;
     for (auto entity : *manager)
     {
         entities.emplace_back(entity);

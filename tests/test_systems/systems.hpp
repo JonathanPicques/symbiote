@@ -2,7 +2,7 @@
 
 #include <core/system.hpp>
 
-class WorldStateSystem final : public System
+class WorldStateSystem final : public Symbiote::Core::System
 {
 public:
     DECLARE_SYSTEM(WorldStateSystem);

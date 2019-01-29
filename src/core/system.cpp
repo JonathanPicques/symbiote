@@ -1,20 +1,26 @@
 #include "core/system.hpp"
 
-DEFINE_ROOT_SYSTEM(System);
+DEFINE_ROOT_SYSTEM(Symbiote::Core::System);
 
-System::~System()
-{
+namespace Symbiote {
+    namespace Core {
 
-}
+        System::~System()
+        {
 
-auto System::OnLoad() -> void
-{
-    OnResolveDependencies();
-}
+        }
 
-auto System::OnResolveDependencies() -> void
-{
+        auto System::OnLoad() -> void
+        {
+            OnResolveDependencies();
+        }
 
+        auto System::OnResolveDependencies() -> void
+        {
+
+        }
+
+    }
 }
 
 #undef DEFINE_ROOT_SYSTEM

@@ -12,7 +12,7 @@ TEST(Performance, CreateMaxEntities)
     auto manager = CreateEntityManager();
     const clock_t t0 = clock();
 
-    for (auto i = 0; i < std::numeric_limits<Entity::PointerSize>::max(); i++)
+    for (auto i = 0; i < std::numeric_limits<Symbiote::Core::Entity::PointerSize>::max(); i++)
     {
         manager->CreateEntity();
     }
@@ -26,7 +26,7 @@ TEST(Performance, CreateMaxEntitiesWithComponents)
     auto manager = CreateEntityManager();
     const clock_t t0 = clock();
 
-    for (auto i = 0; i < std::numeric_limits<Entity::PointerSize>::max(); i++)
+    for (auto i = 0; i < std::numeric_limits<Symbiote::Core::Entity::PointerSize>::max(); i++)
     {
         manager->CreateEntityWith<DummyComponent, TransformComponent, PhysicsComponent>();
     }
@@ -40,7 +40,7 @@ TEST(Performance, CreateMaxEntitiesWithComponentsAndUpdateThem)
     auto manager = CreateEntityManager();
     const clock_t t0 = clock();
 
-    for (auto i = 0; i < std::numeric_limits<Entity::PointerSize>::max(); i++)
+    for (auto i = 0; i < std::numeric_limits<Symbiote::Core::Entity::PointerSize>::max(); i++)
     {
         if (i % 1000 == 0)
         {
@@ -62,5 +62,6 @@ TEST(Performance, CreateMaxEntitiesWithComponentsAndUpdateThem)
     const clock_t t1 = clock();
     std::cout << "CreateMaxEntitiesWithComponentsAndUpdateThem took " << (t1 - t0) / (double) CLOCKS_PER_SEC << " seconds" << std::endl;
 }
+
 
 #endif

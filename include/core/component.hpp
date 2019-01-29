@@ -12,30 +12,35 @@
 #define DECLARE_ROOT_COMPONENT(NAME) static constexpr const char* ComponentName{#NAME}; virtual std::string GetComponentName() const
 #define DEFINE_ROOT_COMPONENT(NAME) std::string NAME::GetComponentName() const { return NAME::ComponentName; } constexpr const char* NAME::ComponentName
 
-class EntityManager;
+namespace Symbiote {
+    namespace Core {
 
-class Component
-{
-public:
-    DECLARE_ROOT_COMPONENT(Component);
+        class EntityManager;
 
-public:
-    friend Entity;
-    friend EntityManager;
+        class Component {
+        public:
+            DECLARE_ROOT_COMPONENT(Symbiote::Core::Component);
 
-public:
-    virtual ~Component() = 0;
+        public:
+            friend Entity;
+            friend EntityManager;
 
-protected:
-    virtual auto OnLoad() -> void;
-    virtual auto OnResolveDependencies() -> void;
+        public:
+            virtual ~Component() = 0;
 
-protected:
-    virtual auto Serialize(std::ostream& os) const -> void;
-    virtual auto Deserialize(std::istream& is) -> void;
+        protected:
+            virtual auto OnLoad() -> void;
+            virtual auto OnResolveDependencies() -> void;
 
-protected:
-   Entity mEntity = {};
-};
+        protected:
+            virtual auto Serialize(std::ostream& os) const -> void;
+            virtual auto Deserialize(std::istream& is) -> void;
+
+        protected:
+            Entity mEntity = {};
+        };
+
+    }
+}
 
 #undef DECLARE_ROOT_COMPONENT

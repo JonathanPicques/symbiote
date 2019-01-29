@@ -5,70 +5,76 @@
 #include <functional>
 #include <type_traits>
 
-class EntityManager;
+namespace Symbiote {
+    namespace Core {
 
-class Entity final
-{
-public:
-    friend EntityManager;
+        class EntityManager;
 
-public:
-    using PointerSize = std::uint16_t;
+        class Entity final
+        {
+        public:
+            friend EntityManager;
 
-public:
-    Entity() = default;
-    Entity(Entity&&) = default;
-    Entity(Entity const&) = default;
-    Entity& operator=(Entity const&) = default;
+        public:
+            using PointerSize = std::uint16_t;
 
-public:
-    Entity(EntityManager* manager);
-    Entity(EntityManager* manager, PointerSize index, PointerSize version);
+        public:
+            Entity() = default;
+            Entity(Entity&&) = default;
+            Entity(Entity const&) = default;
+            Entity& operator=(Entity const&) = default;
 
-public:
-    explicit operator bool() const;
+        public:
+            Entity(EntityManager* manager);
+            Entity(EntityManager* manager, PointerSize index, PointerSize version);
 
-public:
-    auto IsValid() const -> bool;
+        public:
+            explicit operator bool() const;
 
-public:
-    template<typename C>
-    auto GetComponent() -> C*;
-    template<typename C>
-    auto GetComponent() const -> const C*;
-    template<typename C>
-    auto AddComponent() -> C*;
-    template<typename C>
-    auto RemoveComponent() -> void;
-    template<typename C>
-    auto HasComponent() const -> bool;
-    template<typename C1, typename C2, typename ...C>
-    auto HasComponent() const -> bool;
-    template<typename C>
-    auto HasAnyComponent() const -> bool;
-    template<typename C1, typename C2, typename ...C>
-    auto HasAnyComponent() const -> bool;
+        public:
+            auto IsValid() const -> bool;
 
-public:
-    template<typename ...C>
-    auto Any(typename std::common_type<std::function<void(C* ...)>>::type view) -> bool;
-    template<typename ...C>
-    auto With(typename std::common_type<std::function<void(C* ...)>>::type view) -> bool;
+        public:
+            template<typename C>
+            auto GetComponent() -> C*;
+            template<typename C>
+            auto GetComponent() const -> const C*;
+            template<typename C>
+            auto AddComponent() -> C*;
+            template<typename C>
+            auto RemoveComponent() -> void;
+            template<typename C>
+            auto HasComponent() const -> bool;
+            template<typename C1, typename C2, typename ...C>
+            auto HasComponent() const -> bool;
+            template<typename C>
+            auto HasAnyComponent() const -> bool;
+            template<typename C1, typename C2, typename ...C>
+            auto HasAnyComponent() const -> bool;
 
-public:
-    auto ResolveComponentDependencies() -> void;
+        public:
+            template<typename ...C>
+            auto Any(typename std::common_type<std::function<void(C* ...)>>::type view) -> bool;
+            template<typename ...C>
+            auto With(typename std::common_type<std::function<void(C* ...)>>::type view) -> bool;
 
-public:
-    auto Destroy() -> void;
+        public:
+            auto ResolveComponentDependencies() -> void;
 
-public:
-    auto GetManager() -> EntityManager*;
+        public:
+            auto Destroy() -> void;
 
-public:
-    friend auto operator==(const Entity& a, const Entity& b) -> bool;
+        public:
+            auto GetManager() -> EntityManager*;
 
-private:
-    EntityManager* mManager = nullptr;
-    PointerSize mIndex = 0;
-    PointerSize mVersion = 0;
-};
+        public:
+            friend auto operator==(const Entity& a, const Entity& b) -> bool;
+
+        private:
+            EntityManager* mManager = nullptr;
+            PointerSize mIndex = 0;
+            PointerSize mVersion = 0;
+        };
+
+    }
+}

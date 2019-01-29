@@ -8,28 +8,34 @@
 #define DECLARE_ROOT_SYSTEM(NAME) static constexpr const char* SystemName{#NAME}; virtual std::string GetSystemName() const
 #define DEFINE_ROOT_SYSTEM(NAME) std::string NAME::GetSystemName() const { return NAME::SystemName; } constexpr const char* NAME::SystemName
 
-class EntityManager;
+namespace Symbiote {
+    namespace Core {
 
-class System
-{
-public:
-    DECLARE_ROOT_SYSTEM(System);
+        class EntityManager;
 
-public:
-    friend EntityManager;
+        class System
+        {
+        public:
+            DECLARE_ROOT_SYSTEM(Symbiote::Core::System);
 
-public:
-    virtual ~System() = 0;
+        public:
+            friend EntityManager;
 
-public:
-    virtual auto Update() -> void = 0;
+        public:
+            virtual ~System() = 0;
 
-protected:
-    virtual auto OnLoad() -> void;
-    virtual auto OnResolveDependencies() -> void;
+        public:
+            virtual auto Update() -> void = 0;
 
-protected:
-    EntityManager* mManager = nullptr;
-};
+        protected:
+            virtual auto OnLoad() -> void;
+            virtual auto OnResolveDependencies() -> void;
+
+        protected:
+            EntityManager* mManager = nullptr;
+        };
+
+    }
+}
 
 #undef DECLARE_ROOT_SYSTEM

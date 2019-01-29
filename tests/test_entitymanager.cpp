@@ -228,7 +228,7 @@ TEST(EntityManager, SparseSaveAndLoad)
         f.open("sparse_save.bin", std::ios::in | std::ios::binary);
         manager->Deserialize(is);
 
-        std::vector<Entity> entities;
+        std::vector<Symbiote::Core::Entity> entities;
         for (auto entity : *manager)
         {
             entities.emplace_back(entity);
@@ -246,7 +246,7 @@ TEST(EntityManager, SparseSaveAndLoad)
 TEST(EntityManager, ExtremeSparseSaveAndLoad)
 {
     auto manager = CreateEntityManager();
-    std::vector<Entity> entities;
+    std::vector<Symbiote::Core::Entity> entities;
     std::default_random_engine generator;
     std::uniform_int_distribution<int> distribution(0, 15);
     for (auto i = 0; i < 1000; i++)
@@ -277,7 +277,7 @@ TEST(EntityManager, ExtremeSparseSaveAndLoad)
         f.open("extreme_sparse_save.bin", std::ios::in | std::ios::binary);
         manager->Deserialize(is);
 
-        std::vector<Entity> entities2;
+        std::vector<Symbiote::Core::Entity> entities2;
         for (auto entity : *manager)
         {
             entities2.emplace_back(entity);
