@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"build": true,
+			"vendors": true,
+			"tests/googletest": true,
+		},
+		"C_Cpp.intelliSenseEngineFallback": "Disabled"
+	}
+}
