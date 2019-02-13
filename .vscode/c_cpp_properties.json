@@ -12,10 +12,11 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "C:\\tools\\msys64\\mingw64\\bin\\clang.exe",
+            "compilerPath": "C:\\tools\\msys64\\mingw64\\bin\\gcc.exe",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "clang-x64"
+            "intelliSenseMode": "clang-x64",
+            "configurationProvider": "vector-of-bool.cmake-tools"
         }
     ],
     "version": 4

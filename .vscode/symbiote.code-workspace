@@ -10,6 +10,11 @@
 			"vendors": true,
 			"tests/googletest": true,
 		},
-		"C_Cpp.intelliSenseEngineFallback": "Disabled"
+		"cmake.cmakePath": "C:\\tools\\msys64\\mingw64\\bin\\cmake.exe",
+		"cmake.ctestPath": "C:\\tools\\msys64\\mingw64\\bin\\ctest.exe",
+		"cmake.mingwSearchDirs": [
+			"C:\\tools\\msys64\\mingw64",
+		],
+		"C_Cpp.intelliSenseEngineFallback": "Disabled",
 	}
 }
