@@ -25,6 +25,11 @@ add_subdirectory(vendors/glm/glm)
 target_link_libraries(symbiote glm_static)
 target_include_directories(symbiote PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/vendors/glm>)
 
+# Symbiote SDL2
+find_package(SDL2 REQUIRED)
+target_link_libraries(symbiote ${SDL2_LIBRARIES})
+target_include_directories(symbiote PUBLIC ${SDL2_INCLUDE_DIRS})
+
 # Symbiote main
 add_executable(symbiote_main src/main.cpp)
 target_link_libraries(symbiote_main symbiote)

@@ -3,34 +3,25 @@
 DEFINE_ROOT_COMPONENT(Symbiote::Core::Component);
 
 namespace Symbiote {
-    namespace Core {
+	namespace Core {
 
-        Component::~Component()
-        {
+		Component::~Component() {
+		}
 
-        }
+		auto Component::OnLoad() -> void {
+			OnResolveDependencies();
+		}
 
-        auto Component::OnLoad() -> void
-        {
-            OnResolveDependencies();
-        }
+		auto Component::OnResolveDependencies() -> void {
+		}
 
-        auto Component::OnResolveDependencies() -> void
-        {
+		auto Component::Serialize(std::ostream &) const -> void {
+		}
 
-        }
+		auto Component::Deserialize(std::istream &) -> void {
+		}
 
-        auto Component::Serialize(std::ostream&) const -> void
-        {
-
-        }
-
-        auto Component::Deserialize(std::istream&) -> void
-        {
-
-        }
-
-    }
-}
+	} // namespace Core
+} // namespace Symbiote
 
 #undef DEFINE_ROOT_COMPONENT

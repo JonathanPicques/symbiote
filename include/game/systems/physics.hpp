@@ -3,15 +3,15 @@
 #include "core/system.hpp"
 
 namespace Symbiote {
-    namespace Game {
+	namespace Game {
 
-        class PhysicsSystem final : public Symbiote::Core::System {
-        public:
-            DECLARE_SYSTEM(Symbiote::Game::PhysicsSystem);
+		class PhysicsSystem final : public Symbiote::Core::System {
+		public:
+			DECLARE_SYSTEM(Symbiote::Game::PhysicsSystem);
 
-        public:
-            auto Update(float deltaTime) -> void;
-        };
+		public:
+			auto Update(float deltaTime) -> void;
+		};
 
-    }
-}
+	} // namespace Game
+} // namespace Symbiote

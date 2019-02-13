@@ -16,5 +16,6 @@
 			"C:\\tools\\msys64\\mingw64",
 		],
 		"C_Cpp.intelliSenseEngineFallback": "Disabled",
+		"editor.formatOnSave": true
 	}
 }

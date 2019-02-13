@@ -10,14 +10,11 @@
 DEFINE_SYSTEM(Symbiote::Game::PhysicsSystem);
 
 namespace Symbiote {
-    namespace Game {
+	namespace Game {
 
-        auto PhysicsSystem::Update(float deltaTime) -> void
-        {
-            this->mManager->With<RigidBodyComponent, TransformComponent>([&](auto e, auto rigidbody, auto transform) {
-                transform->SetPosition(transform->GetPosition() * rigidbody->mSpeed * deltaTime);
-            });
-        }
+		auto PhysicsSystem::Update(float deltaTime) -> void {
+			this->mManager->With<RigidBodyComponent, TransformComponent>([&](auto e, auto rigidbody, auto transform) { transform->SetPosition(transform->GetPosition() * rigidbody->mSpeed * deltaTime); });
+		}
 
-    }
-}
+	} // namespace Game
+} // namespace Symbiote

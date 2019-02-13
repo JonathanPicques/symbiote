@@ -3,24 +3,19 @@
 DEFINE_ROOT_SYSTEM(Symbiote::Core::System);
 
 namespace Symbiote {
-    namespace Core {
+	namespace Core {
 
-        System::~System()
-        {
+		System::~System() {
+		}
 
-        }
+		auto System::OnLoad() -> void {
+			OnResolveDependencies();
+		}
 
-        auto System::OnLoad() -> void
-        {
-            OnResolveDependencies();
-        }
+		auto System::OnResolveDependencies() -> void {
+		}
 
-        auto System::OnResolveDependencies() -> void
-        {
-
-        }
-
-    }
-}
+	} // namespace Core
+} // namespace Symbiote
 
 #undef DEFINE_ROOT_SYSTEM

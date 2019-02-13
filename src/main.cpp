@@ -9,24 +9,27 @@
 using namespace Symbiote::Core;
 using namespace Symbiote::Game;
 
-auto main() -> int
-{
-    EntityManager manager;
+auto main() -> int {
+	EntityManager manager;
 
-    manager.RegisterComponent<TransformComponent>();
+	manager.RegisterComponent<TransformComponent>();
 
-    auto physics = manager.AddSystem<PhysicsSystem>();
-    auto renderer = manager.AddSystem<RendererSystem>();
+	auto physics = manager.AddSystem<PhysicsSystem>();
+	auto renderer = manager.AddSystem<RendererSystem>();
 
-    auto entity = manager.CreateEntityWith<TransformComponent>();
-    auto transform = entity.GetComponent<TransformComponent>();
+	auto entity = manager.CreateEntityWith<TransformComponent>();
+	auto transform = entity.GetComponent<TransformComponent>();
 
-    physics->Update(0.16f);
-    physics->Update(0.16f);
-    physics->Update(0.16f);
-    physics->Update(0.16f);
+	physics->Update(0.16f);
+	physics->Update(0.16f);
+	physics->Update(0.16f);
+	physics->Update(0.16f);
 
-    std::cout << entity.GetComponent<TransformComponent>()->GetRotation() << std::endl;
+	std::cout << entity.GetComponent<TransformComponent>()->GetRotation() << std::endl;
 
-    return 0;
+	while (true) {
+		renderer->PumpEvents();
+	}
+
+	return 0;
 }

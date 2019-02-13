@@ -3,15 +3,15 @@
 #include "core/component.hpp"
 
 namespace Symbiote {
-    namespace Game {
+	namespace Game {
 
-        class RigidBodyComponent : public Symbiote::Core::Component {
-        public:
-            DECLARE_COMPONENT(Symbiote::Game::RigidBodyComponent);
+		class RigidBodyComponent : public Symbiote::Core::Component {
+		public:
+			DECLARE_COMPONENT(Symbiote::Game::RigidBodyComponent);
 
-        public:
-            float mSpeed;
-        };
+		public:
+			float mSpeed;
+		};
 
-    }
-}
+	} // namespace Game
+} // namespace Symbiote
