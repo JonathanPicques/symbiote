@@ -9,9 +9,15 @@ namespace Symbiote {
 
 		enum class TransformCoordinates { Local, World };
 
-		class TransformComponent : public Symbiote::Core::Component {
+		class TransformComponent final : public Symbiote::Core::Component {
 		public:
 			DECLARE_COMPONENT(Symbiote::Game::TransformComponent);
+
+		public:
+			TransformComponent() = default;
+			TransformComponent(TransformComponent &&) = delete;
+			TransformComponent(TransformComponent const &) = delete;
+			TransformComponent &operator=(TransformComponent const &) = delete;
 
 		public:
 			using Scale = glm::vec2;

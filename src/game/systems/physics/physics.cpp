@@ -3,9 +3,9 @@
 #include "core/entity.hpp"
 #include "core/entitymanager.hpp"
 
-#include "game/systems/physics.hpp"
-#include "game/components/rigidbody.hpp"
-#include "game/components/transform.hpp"
+#include "game/systems/physics/physics.hpp"
+#include "game/components/rigidbody/rigidbody.hpp"
+#include "game/components/transform/transform.hpp"
 
 DEFINE_SYSTEM(Symbiote::Game::PhysicsSystem);
 

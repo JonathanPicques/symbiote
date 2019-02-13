@@ -2,9 +2,9 @@
 
 #include "core/entitymanager.hpp"
 
-#include "game/systems/physics.hpp"
-#include "game/systems/renderer.hpp"
-#include "game/components/transform.hpp"
+#include "game/systems/physics/physics.hpp"
+#include "game/systems/renderer/renderer.hpp"
+#include "game/components/transform/transform.hpp"
 
 using namespace Symbiote::Core;
 using namespace Symbiote::Game;
@@ -27,8 +27,8 @@ auto main() -> int {
 
 	std::cout << entity.GetComponent<TransformComponent>()->GetRotation() << std::endl;
 
-	while (true) {
-		renderer->PumpEvents();
+	while (renderer->PollEvents()) {
+		//
 	}
 
 	return 0;

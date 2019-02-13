@@ -13,9 +13,15 @@ namespace Symbiote {
 
 		public:
 			RendererSystem();
+			RendererSystem(RendererSystem &&) = delete;
+			RendererSystem(RendererSystem const &) = delete;
+			RendererSystem &operator=(RendererSystem const &) = delete;
 
 		public:
-			auto PumpEvents() -> void;
+			~RendererSystem();
+
+		public:
+			auto PollEvents() -> bool;
 
 		private:
 			SDL_Window *mWindow = nullptr;

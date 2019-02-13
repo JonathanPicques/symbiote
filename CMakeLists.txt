@@ -5,15 +5,15 @@ set(CMAKE_CXX_STANDARD 14)
 
 # Symbiote library
 add_library(symbiote
-        src/core/entitymanager.cpp              include/core/entitymanager.hpp
-        src/core/system.cpp                     include/core/system.hpp
-        src/core/entity.cpp                     include/core/entity.hpp
-        src/core/component.cpp                  include/core/component.hpp
+        src/core/entitymanager.cpp                              include/core/entitymanager.hpp
+        src/core/system.cpp                                     include/core/system.hpp
+        src/core/entity.cpp                                     include/core/entity.hpp
+        src/core/component.cpp                                  include/core/component.hpp
 
-        src/game/components/rigidbody.cpp       include/game/components/rigidbody.hpp
-        src/game/components/transform.cpp       include/game/components/transform.hpp
-        src/game/systems/physics.cpp            include/game/systems/physics.hpp
-        src/game/systems/renderer.cpp            include/game/systems/renderer.hpp
+        src/game/components/rigidbody/rigidbody.cpp             include/game/components/rigidbody/rigidbody.hpp
+        src/game/components/transform/transform.cpp             include/game/components/transform/transform.hpp
+        src/game/systems/physics/physics.cpp                    include/game/systems/physics/physics.hpp
+        src/game/systems/renderer/renderer.cpp                  include/game/systems/renderer/renderer.hpp
 )
 target_include_directories(symbiote PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include> PRIVATE src)
 target_compile_options(symbiote PRIVATE "-Wall")
