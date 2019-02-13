@@ -15,7 +15,7 @@ namespace Symbiote {
         auto PhysicsSystem::Update(float deltaTime) -> void
         {
             this->mManager->With<RigidBodyComponent, TransformComponent>([&](auto e, auto rigidbody, auto transform) {
-                transform->mPosition *= rigidbody->mSpeed * deltaTime;
+                transform->SetPosition(transform->GetPosition() * rigidbody->mSpeed * deltaTime);
             });
         }
 

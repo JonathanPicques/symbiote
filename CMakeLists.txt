@@ -13,6 +13,7 @@ add_library(symbiote
         src/game/components/rigidbody.cpp       include/game/components/rigidbody.hpp
         src/game/components/transform.cpp       include/game/components/transform.hpp
         src/game/systems/physics.cpp            include/game/systems/physics.hpp
+        src/game/systems/renderer.cpp            include/game/systems/renderer.hpp
 )
 target_include_directories(symbiote PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include> PRIVATE src)
 target_compile_options(symbiote PRIVATE "-Wall")
