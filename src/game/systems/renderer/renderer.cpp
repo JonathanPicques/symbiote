@@ -1,21 +1,24 @@
-#include "SDL2/SDL.h"
+#include <exception>
+
+#include <SDL2/SDL.h>
 
 #include "game/systems/renderer/renderer.hpp"
 
 DEFINE_SYSTEM(Symbiote::Game::RendererSystem);
 
+static auto inline create_sdl_window(std::string const &window_name) -> SDL_Window * {
+	auto window = SDL_CreateWindow(window_name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 320, 240, SDL_WINDOW_VULKAN);
+	if (window == nullptr) {
+		throw std::runtime_error("create_sdl_window(): SDL_CreateWindow failed");
+	}
+	return window;
+}
+
 namespace Symbiote {
 	namespace Game {
 
-		RendererSystem::RendererSystem() {
-			auto init = SDL_Init(SDL_INIT_VIDEO);
-			if (init != 0) {
-				std::abort(); // Failed to init SDL
-			}
-			mWindow = SDL_CreateWindow("Hello", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 320, 240, SDL_WINDOW_VULKAN);
-			if (mWindow == nullptr) {
-				std::abort(); // Failed to create SDL window
-			}
+		RendererSystem::RendererSystem(std::string const &window_name) : mWindow(create_sdl_window(window_name)), mVulkanRenderer(mWindow) {
+			//
 		}
 
 		RendererSystem::~RendererSystem() {

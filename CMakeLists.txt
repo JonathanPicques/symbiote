@@ -14,6 +14,7 @@ add_library(symbiote
         src/game/components/transform/transform.cpp             include/game/components/transform/transform.hpp
         src/game/systems/physics/physics.cpp                    include/game/systems/physics/physics.hpp
         src/game/systems/renderer/renderer.cpp                  include/game/systems/renderer/renderer.hpp
+        src/game/systems/renderer/vulkan/vulkan.cpp             include/game/systems/renderer/vulkan/vulkan.hpp
 )
 target_include_directories(symbiote PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include> PRIVATE src)
 target_compile_options(symbiote PRIVATE "-Wall")
@@ -29,6 +30,11 @@ target_include_directories(symbiote PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOU
 find_package(SDL2 REQUIRED)
 target_link_libraries(symbiote ${SDL2_LIBRARIES})
 target_include_directories(symbiote PUBLIC ${SDL2_INCLUDE_DIRS})
+
+# Symbiote Vulkan
+find_package(Vulkan REQUIRED)
+target_link_libraries(symbiote ${Vulkan_LIBRARIES})
+target_include_directories(symbiote PUBLIC ${Vulkan_INCLUDE_DIRS})
 
 # Symbiote main
 add_executable(symbiote_main src/main.cpp)

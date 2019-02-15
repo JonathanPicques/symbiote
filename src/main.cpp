@@ -15,20 +15,13 @@ auto main() -> int {
 	manager.RegisterComponent<TransformComponent>();
 
 	auto physics = manager.AddSystem<PhysicsSystem>();
-	auto renderer = manager.AddSystem<RendererSystem>();
+	auto renderer = manager.AddSystem<RendererSystem>("Symbiote Engine - Vulkan");
 
 	auto entity = manager.CreateEntityWith<TransformComponent>();
 	auto transform = entity.GetComponent<TransformComponent>();
 
-	physics->Update(0.16f);
-	physics->Update(0.16f);
-	physics->Update(0.16f);
-	physics->Update(0.16f);
-
-	std::cout << entity.GetComponent<TransformComponent>()->GetRotation() << std::endl;
-
 	while (renderer->PollEvents()) {
-		//
+		physics->Update(0.16f);
 	}
 
 	return 0;

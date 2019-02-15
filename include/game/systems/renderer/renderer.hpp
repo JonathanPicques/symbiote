@@ -1,6 +1,9 @@
 #pragma once
 
+#include <string>
+
 #include "core/system.hpp"
+#include "game/systems/renderer/vulkan/vulkan.hpp"
 
 struct SDL_Window;
 
@@ -12,7 +15,7 @@ namespace Symbiote {
 			DECLARE_SYSTEM(Symbiote::Game::RendererSystem);
 
 		public:
-			RendererSystem();
+			RendererSystem(std::string const &window_name);
 			RendererSystem(RendererSystem &&) = delete;
 			RendererSystem(RendererSystem const &) = delete;
 			RendererSystem &operator=(RendererSystem const &) = delete;
@@ -25,6 +28,7 @@ namespace Symbiote {
 
 		private:
 			SDL_Window *mWindow = nullptr;
+			VulkanRenderer mVulkanRenderer;
 		};
 
 	} // namespace Game
