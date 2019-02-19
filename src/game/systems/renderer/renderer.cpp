@@ -26,6 +26,10 @@ namespace Symbiote {
 			SDL_Quit();
 		}
 
+		auto RendererSystem::Render() -> void {
+			mVulkanRenderer.Render();
+		}
+
 		auto RendererSystem::PollEvents() -> bool {
 			SDL_Event e;
 			while (SDL_PollEvent(&e)) {

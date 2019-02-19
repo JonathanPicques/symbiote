@@ -24,6 +24,7 @@ namespace Symbiote {
 			~RendererSystem();
 
 		public:
+			auto Render() -> void;
 			auto PollEvents() -> bool;
 
 		private:

@@ -22,6 +22,7 @@ auto main() -> int {
 
 	while (renderer->PollEvents()) {
 		physics->Update(0.16f);
+		renderer->Render();
 	}
 
 	return 0;
