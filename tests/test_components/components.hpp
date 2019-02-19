@@ -6,56 +6,54 @@
 
 #include <core/component.hpp>
 
-namespace Symbiote { 
-    namespace Core {
-        class EntityManager;
-    }
-}
+namespace Symbiote {
+	namespace Core {
+		class EntityManager;
+	}
+} // namespace Symbiote
 
-class DummyComponent final : public Symbiote::Core::Component
-{
+class DummyComponent final : public Symbiote::Core::Component {
 public:
-    DECLARE_COMPONENT(DummyComponent);
+	DECLARE_COMPONENT(DummyComponent);
 };
 
-class PhysicsComponent final : public Symbiote::Core::Component
-{
+class PhysicsComponent final : public Symbiote::Core::Component {
 public:
-    DECLARE_COMPONENT(PhysicsComponent);
+	DECLARE_COMPONENT(PhysicsComponent);
 };
 
-class TransformComponent final : public Symbiote::Core::Component
-{
+class TransformComponent final : public Symbiote::Core::Component {
 public:
-    DECLARE_COMPONENT(TransformComponent);
+	DECLARE_COMPONENT(TransformComponent);
 
 public:
-    TransformComponent() = default;
-    TransformComponent(float x, float y) : mData{ x, y }
-    {}
+	TransformComponent() = default;
+	TransformComponent(float x, float y) : mData{x, y} {
+	}
 
 public:
-    auto Serialize(std::ostream& out) const -> void override
-    {
-        static_assert(std::is_pod<decltype(TransformComponent::mData)>::value, "TransformComponent is not POD");
-        out.write((char*) &mData, sizeof(mData));
-    }
-    auto Deserialize(std::istream& is) -> void override
-    {
-        static_assert(std::is_pod<decltype(TransformComponent::mData)>::value, "TransformComponent is not POD");
-        is.read((char*) &mData, sizeof(mData));
-    }
+	auto Serialize(std::ostream &out) const -> void override {
+		static_assert(std::is_pod<decltype(TransformComponent::mData)>::value, "TransformComponent is not POD");
+		out.write((char *)&mData, sizeof(mData));
+	}
+	auto Deserialize(std::istream &is) -> void override {
+		static_assert(std::is_pod<decltype(TransformComponent::mData)>::value, "TransformComponent is not POD");
+		is.read((char *)&mData, sizeof(mData));
+	}
 
 public:
-    auto GetX() const -> float { return mData.x; }
-    auto GetY() const -> float { return mData.y; }
+	auto GetX() const -> float {
+		return mData.x;
+	}
+	auto GetY() const -> float {
+		return mData.y;
+	}
 
 public:
-    struct
-    {
-        float x;
-        float y;
-    } mData = {};
+	struct {
+		float x;
+		float y;
+	} mData = {};
 };
 
 auto CreateEntityManager() -> std::unique_ptr<Symbiote::Core::EntityManager>;

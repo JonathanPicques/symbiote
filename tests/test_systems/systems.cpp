@@ -2,7 +2,5 @@
 
 DEFINE_SYSTEM(WorldStateSystem);
 
-WorldStateSystem::WorldStateSystem(char* inputState, char* networkState) : mInputState(inputState), mNetworkState(networkState)
-{
-
+WorldStateSystem::WorldStateSystem(char *inputState, char *networkState) : mInputState(inputState), mNetworkState(networkState) {
 }

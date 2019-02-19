@@ -28,12 +28,6 @@ namespace Symbiote {
 			auto CreateEntityWith() -> Entity;
 
 		private:
-			template<typename C>
-			auto CreateEntityWith(Entity &entityPointer) -> void;
-			template<typename C1, typename C2, typename... C>
-			auto CreateEntityWith(Entity &entityPointer) -> void;
-
-		private:
 			auto DestroyEntity(Entity &entityPointer) -> void;
 
 		public:
@@ -139,8 +133,8 @@ namespace Symbiote {
 			auto EntityGetComponent(const Entity &entityPointer) -> C *;
 			template<typename C>
 			auto EntityGetComponent(const Entity &entityPointer) const -> const C *;
-			template<typename C>
-			auto EntityAddComponent(const Entity &entityPointer) -> C *;
+			template<typename C, typename... Args>
+			auto EntityAddComponent(const Entity &entityPointer, Args &&... args) -> C *;
 			template<typename C>
 			auto EntityRemoveComponent(const Entity &entityPointer) -> void;
 
@@ -185,9 +179,9 @@ namespace Symbiote {
 			return mManager->EntityGetComponent<C>(*this);
 		}
 
-		template<typename C>
-		auto Entity::AddComponent() -> C * {
-			return mManager->EntityAddComponent<C>(*this);
+		template<typename C, typename... Args>
+		auto Entity::AddComponent(Args &&... args) -> C * {
+			return mManager->EntityAddComponent<C>(*this, std::forward<Args>(args)...);
 		}
 
 		template<typename C>
@@ -228,20 +222,9 @@ namespace Symbiote {
 		template<typename... C>
 		auto EntityManager::CreateEntityWith() -> Entity {
 			auto entityPointer = CreateEntity();
-			CreateEntityWith<C...>(entityPointer);
+			(entityPointer.AddComponent<C>(), ...);
 			EntityResolveComponentDependencies(entityPointer);
 			return entityPointer;
-		}
-
-		template<typename C>
-		auto EntityManager::CreateEntityWith(Entity &entityPointer) -> void {
-			entityPointer.AddComponent<C>();
-		}
-
-		template<typename C1, typename C2, typename... C>
-		auto EntityManager::CreateEntityWith(Entity &entityPointer) -> void {
-			CreateEntityWith<C1>(entityPointer);
-			CreateEntityWith<C2, C...>(entityPointer);
 		}
 
 		template<typename S, typename... Args>
@@ -308,8 +291,8 @@ namespace Symbiote {
 			return nullptr;
 		}
 
-		template<typename C>
-		auto EntityManager::EntityAddComponent(const Entity &entityPointer) -> C * {
+		template<typename C, typename... Args>
+		auto EntityManager::EntityAddComponent(const Entity &entityPointer, Args &&... args) -> C * {
 			AssertEntityPointerValid(entityPointer);
 #if defined(_DEBUG)
 			AssertComponentRegistered(C::ComponentName);
@@ -317,7 +300,7 @@ namespace Symbiote {
 			if (EntityHasComponent<C>(entityPointer)) {
 				throw std::logic_error(std::string{"Entity::AddComponent: Component "} + C::ComponentName + std::string{" already exists"});
 			}
-			auto component = std::make_unique<C>();
+			auto component = std::make_unique<C>(std::forward<Args>(args)...);
 			auto componentPtr = component.get();
 			mEntityComponents[entityPointer.mIndex].emplace_back(std::move(component));
 			EntityConstructComponent(componentPtr, entityPointer);

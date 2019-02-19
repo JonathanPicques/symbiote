@@ -14,15 +14,18 @@ namespace Symbiote {
 			DECLARE_COMPONENT(Symbiote::Game::TransformComponent);
 
 		public:
+			using Scale = glm::vec2;
+			using Position = glm::vec2;
+			using Rotation = float;
+
+		public:
 			TransformComponent() = default;
 			TransformComponent(TransformComponent &&) = delete;
 			TransformComponent(TransformComponent const &) = delete;
 			TransformComponent &operator=(TransformComponent const &) = delete;
 
 		public:
-			using Scale = glm::vec2;
-			using Position = glm::vec2;
-			using Rotation = float;
+			TransformComponent(Scale const &scale, Position const &position, Rotation rotation, TransformComponent *parent = nullptr);
 
 		public:
 			auto GetParent() -> TransformComponent *;

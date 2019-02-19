@@ -38,8 +38,8 @@ namespace Symbiote {
 			auto GetComponent() -> C *;
 			template<typename C>
 			auto GetComponent() const -> const C *;
-			template<typename C>
-			auto AddComponent() -> C *;
+			template<typename C, typename... Args>
+			auto AddComponent(Args &&... args) -> C *;
 			template<typename C>
 			auto RemoveComponent() -> void;
 			template<typename C>

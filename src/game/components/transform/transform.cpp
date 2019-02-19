@@ -7,6 +7,9 @@ DEFINE_COMPONENT(Symbiote::Game::TransformComponent);
 namespace Symbiote {
 	namespace Game {
 
+		TransformComponent::TransformComponent(Scale const &scale, Position const &position, Rotation rotation, TransformComponent *parent) : mParent(parent), mLocalScale(scale), mLocalPosition(position), mLocalRotation(rotation) {
+		}
+
 		auto TransformComponent::GetParent() -> TransformComponent * {
 			return mParent;
 		}
