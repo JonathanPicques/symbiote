@@ -2,7 +2,9 @@
 
 #include <string>
 
-#include "core/system.hpp"
+#include <glm/fwd.hpp>
+
+#include "core/ecs/system.hpp"
 #include "game/systems/renderer/vulkan/vulkan.hpp"
 
 struct SDL_Window;
@@ -15,7 +17,7 @@ namespace Symbiote {
 			DECLARE_SYSTEM(Symbiote::Game::RendererSystem);
 
 		public:
-			RendererSystem(std::string const &window_name);
+			RendererSystem(std::string const &window_name, glm::vec4 const &clear_color);
 			RendererSystem(RendererSystem &&) = delete;
 			RendererSystem(RendererSystem const &) = delete;
 			RendererSystem &operator=(RendererSystem const &) = delete;

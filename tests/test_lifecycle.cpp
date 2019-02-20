@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <core/entitymanager.hpp>
+#include <core/ecs/entitymanager.hpp>
 
 class BodyComponent final : public Symbiote::Core::Component {
 public:

@@ -1,6 +1,8 @@
 #include <iostream>
 
-#include "core/entitymanager.hpp"
+#include <glm/vec4.hpp>
+
+#include "core/ecs/entitymanager.hpp"
 
 #include "game/systems/physics/physics.hpp"
 #include "game/systems/renderer/renderer.hpp"
@@ -15,7 +17,7 @@ auto main() -> int {
 	manager.RegisterComponent<TransformComponent>();
 
 	auto physics = manager.AddSystem<PhysicsSystem>();
-	auto renderer = manager.AddSystem<RendererSystem>("Symbiote Engine - Vulkan");
+	auto renderer = manager.AddSystem<RendererSystem>("Symbiote Engine - Vulkan", glm::vec4(0, 0, 1, 0));
 
 	auto entity = manager.CreateEntityWith<TransformComponent>();
 	auto transform = entity.GetComponent<TransformComponent>();

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <exception>
 
+#include <glm/vec4.hpp>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_vulkan.h>
 #include <vulkan/vulkan.hpp>
@@ -13,7 +14,7 @@ static auto vulkan_debug_report(VkDebugReportFlagsEXT flags, VkDebugReportObject
 	return VK_TRUE;
 }
 
-VulkanRenderer::VulkanRenderer(SDL_Window *window) {
+VulkanRenderer::VulkanRenderer(SDL_Window *window, glm::vec4 const &clear_color) {
 	// Get vulkan instance extensions
 	unsigned int extensions_count;
 	if (SDL_Vulkan_GetInstanceExtensions(window, &extensions_count, nullptr) != SDL_TRUE) {
@@ -187,7 +188,7 @@ VulkanRenderer::VulkanRenderer(SDL_Window *window) {
 			sType : VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO,
 			flags : VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT,
 		};
-		VkClearColorValue clear_color = {164.0f / 256.0f, 30.0f / 256.0f, 34.0f / 256.0f, 0.0f};
+		VkClearColorValue clear_color_value = {clear_color.r, clear_color.g, clear_color.b, clear_color.a};
 		VkImageSubresourceRange image_range = {
 			aspectMask : VK_IMAGE_ASPECT_COLOR_BIT,
 			levelCount : 1,
@@ -198,7 +199,7 @@ VulkanRenderer::VulkanRenderer(SDL_Window *window) {
 			if (vkBeginCommandBuffer(mCommandBuffers[command_buffer_index], &command_buffer_begin_info) != VK_SUCCESS) {
 				throw std::runtime_error("VulkanRenderer::VulkanRenderer(): vkBeginCommandBuffer failed");
 			}
-			vkCmdClearColorImage(mCommandBuffers[command_buffer_index], mSwapchainImages[command_buffer_index], VK_IMAGE_LAYOUT_GENERAL, &clear_color, 1, &image_range);
+			vkCmdClearColorImage(mCommandBuffers[command_buffer_index], mSwapchainImages[command_buffer_index], VK_IMAGE_LAYOUT_GENERAL, &clear_color_value, 1, &image_range);
 			if (vkEndCommandBuffer(mCommandBuffers[command_buffer_index]) != VK_SUCCESS) {
 				throw std::runtime_error("VulkanRenderer::VulkanRenderer(): vkEndCommandBuffer failed");
 			}

@@ -5,10 +5,10 @@ set(CMAKE_CXX_STANDARD 17)
 
 # Symbiote library
 add_library(symbiote
-        src/core/entitymanager.cpp                              include/core/entitymanager.hpp
-        src/core/system.cpp                                     include/core/system.hpp
-        src/core/entity.cpp                                     include/core/entity.hpp
-        src/core/component.cpp                                  include/core/component.hpp
+        src/core/ecs/entitymanager.cpp                          include/core/ecs/entitymanager.hpp
+        src/core/ecs/system.cpp                                 include/core/ecs/system.hpp
+        src/core/ecs/entity.cpp                                 include/core/ecs/entity.hpp
+        src/core/ecs/component.cpp                              include/core/ecs/component.hpp
 
         src/game/components/rigidbody/rigidbody.cpp             include/game/components/rigidbody/rigidbody.hpp
         src/game/components/transform/transform.cpp             include/game/components/transform/transform.hpp

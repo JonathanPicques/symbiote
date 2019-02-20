@@ -17,7 +17,7 @@ static auto inline create_sdl_window(std::string const &window_name) -> SDL_Wind
 namespace Symbiote {
 	namespace Game {
 
-		RendererSystem::RendererSystem(std::string const &window_name) : mWindow(create_sdl_window(window_name)), mVulkanRenderer(mWindow) {
+		RendererSystem::RendererSystem(std::string const &window_name, glm::vec4 const &clear_color) : mWindow(create_sdl_window(window_name)), mVulkanRenderer(mWindow, clear_color) {
 			//
 		}
 

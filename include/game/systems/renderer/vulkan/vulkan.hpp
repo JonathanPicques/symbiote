@@ -2,15 +2,14 @@
 
 #include <vector>
 
+#include <glm/fwd.hpp>
 #include <vulkan/vulkan.hpp>
 
 class SDL_Window;
 
-auto enable_vulkan(SDL_Window *window) -> bool;
-
 class VulkanRenderer final {
 public:
-	VulkanRenderer(SDL_Window *window);
+	VulkanRenderer(SDL_Window *window, glm::vec4 const &clear_color);
 	VulkanRenderer(VulkanRenderer &&) = delete;
 	VulkanRenderer(VulkanRenderer const &) = delete;
 	VulkanRenderer &operator=(VulkanRenderer const &) = delete;

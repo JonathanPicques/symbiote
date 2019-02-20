@@ -1,4 +1,4 @@
-#include "core/system.hpp"
+#include "core/ecs/system.hpp"
 
 DEFINE_ROOT_SYSTEM(Symbiote::Core::System);
 

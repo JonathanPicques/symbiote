@@ -2,7 +2,7 @@
 
 #include "glm/vec2.hpp"
 
-#include "core/component.hpp"
+#include "core/ecs/component.hpp"
 
 namespace Symbiote {
 	namespace Game {

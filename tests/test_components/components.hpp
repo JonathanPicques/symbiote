@@ -4,7 +4,7 @@
 #include <ostream>
 #include <istream>
 
-#include <core/component.hpp>
+#include <core/ecs/component.hpp>
 
 namespace Symbiote {
 	namespace Core {

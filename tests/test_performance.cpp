@@ -3,7 +3,7 @@
 #	include <ctime>
 #	include <gtest/gtest.h>
 
-#	include "core/entitymanager.hpp"
+#	include "core/ecs/entitymanager.hpp"
 
 #	include "test_components/components.hpp"
 

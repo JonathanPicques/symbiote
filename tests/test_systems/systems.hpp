@@ -1,6 +1,6 @@
 #pragma once
 
-#include <core/system.hpp>
+#include <core/ecs/system.hpp>
 
 class WorldStateSystem final : public Symbiote::Core::System {
 public:

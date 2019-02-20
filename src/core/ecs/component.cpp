@@ -1,4 +1,4 @@
-#include "core/component.hpp"
+#include "core/ecs/component.hpp"
 
 DEFINE_ROOT_COMPONENT(Symbiote::Core::Component);
 

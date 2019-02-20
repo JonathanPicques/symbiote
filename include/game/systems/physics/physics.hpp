@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/system.hpp"
+#include "core/ecs/system.hpp"
 
 namespace Symbiote {
 	namespace Game {

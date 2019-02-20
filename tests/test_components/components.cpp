@@ -1,4 +1,4 @@
-#include <core/entitymanager.hpp>
+#include <core/ecs/entitymanager.hpp>
 
 #include "components.hpp"
 

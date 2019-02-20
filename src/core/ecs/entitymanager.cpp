@@ -4,7 +4,7 @@
 #include <sstream>
 #include <algorithm>
 
-#include "core/entitymanager.hpp"
+#include "core/ecs/entitymanager.hpp"
 
 namespace Symbiote {
 	namespace Core {

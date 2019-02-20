@@ -1,5 +1,5 @@
-#include "core/entity.hpp"
-#include "core/entitymanager.hpp"
+#include "core/ecs/entity.hpp"
+#include "core/ecs/entitymanager.hpp"
 
 namespace Symbiote {
 	namespace Core {
