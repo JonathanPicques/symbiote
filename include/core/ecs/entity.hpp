@@ -42,13 +42,9 @@ namespace Symbiote {
 			auto AddComponent(Args &&... args) -> C *;
 			template<typename C>
 			auto RemoveComponent() -> void;
-			template<typename C>
+			template<typename... C>
 			auto HasComponent() const -> bool;
-			template<typename C1, typename C2, typename... C>
-			auto HasComponent() const -> bool;
-			template<typename C>
-			auto HasAnyComponent() const -> bool;
-			template<typename C1, typename C2, typename... C>
+			template<typename... C>
 			auto HasAnyComponent() const -> bool;
 
 		public:

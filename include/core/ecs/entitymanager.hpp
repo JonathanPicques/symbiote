@@ -143,13 +143,9 @@ namespace Symbiote {
 			auto EntityResolveComponentDependencies(const Entity &entityPointer) -> void;
 
 		private:
-			template<typename C>
+			template<typename... C>
 			auto EntityHasComponent(const Entity &entityPointer) const -> bool;
-			template<typename C1, typename C2, typename... C>
-			auto EntityHasComponent(const Entity &entityPointer) const -> bool;
-			template<typename C>
-			auto EntityHasAnyComponent(const Entity &entityPointer) const -> bool;
-			template<typename C1, typename C2, typename... C>
+			template<typename... C>
 			auto EntityHasAnyComponent(const Entity &entityPointer) const -> bool;
 
 		private:
@@ -189,24 +185,14 @@ namespace Symbiote {
 			mManager->EntityRemoveComponent<C>(*this);
 		}
 
-		template<typename C>
+		template<typename... C>
 		auto Entity::HasComponent() const -> bool {
-			return mManager->EntityHasComponent<C>(*this);
+			return (mManager->EntityHasComponent<C>(*this) && ...);
 		}
 
-		template<typename C1, typename C2, typename... C>
-		auto Entity::HasComponent() const -> bool {
-			return mManager->EntityHasComponent<C1, C2, C...>(*this);
-		}
-
-		template<typename C>
+		template<typename... C>
 		auto Entity::HasAnyComponent() const -> bool {
-			return mManager->EntityHasAnyComponent<C>(*this);
-		}
-
-		template<typename C1, typename C2, typename... C>
-		auto Entity::HasAnyComponent() const -> bool {
-			return mManager->EntityHasAnyComponent<C1, C2, C...>(*this);
+			return (mManager->EntityHasAnyComponent<C>(*this) && ...);
 		}
 
 		template<typename... C>
@@ -323,31 +309,16 @@ namespace Symbiote {
 			}
 		}
 
-		template<typename C>
+		template<typename... C>
 		auto EntityManager::EntityHasComponent(const Entity &entityPointer) const -> bool {
 			AssertEntityPointerValid(entityPointer);
-			return EntityGetComponent<C>(entityPointer) != nullptr;
+			return ((EntityGetComponent<C>(entityPointer) != nullptr) && ...);
 		}
 
-		template<typename C1, typename C2, typename... C>
-		auto EntityManager::EntityHasComponent(const Entity &entityPointer) const -> bool {
-			AssertEntityPointerValid(entityPointer);
-			return EntityHasComponent<C1>(entityPointer) && EntityHasComponent<C2, C...>(entityPointer);
-		}
-
-		template<typename C>
+		template<typename... C>
 		auto EntityManager::EntityHasAnyComponent(const Entity &entityPointer) const -> bool {
 			AssertEntityPointerValid(entityPointer);
-			return EntityGetComponent<C>(entityPointer) != nullptr;
-		}
-
-		template<typename C1, typename C2, typename... C>
-		auto EntityManager::EntityHasAnyComponent(const Entity &entityPointer) const -> bool {
-			AssertEntityPointerValid(entityPointer);
-			if (EntityHasComponent<C1>(entityPointer)) {
-				return true;
-			}
-			return EntityHasComponent<C2, C...>(entityPointer);
+			return ((EntityGetComponent<C>(entityPointer) != nullptr) && ...);
 		}
 
 		template<typename... C>
