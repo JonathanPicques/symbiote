@@ -1,21 +1,20 @@
 {
-	"folders": [
-		{
-			"path": ".."
-		}
-	],
-	"settings": {
-		"files.exclude": {
-			"build": true,
-			"vendors": true,
-			"tests/googletest": true,
-		},
-		"cmake.cmakePath": "C:\\tools\\msys64\\mingw64\\bin\\cmake.exe",
-		"cmake.ctestPath": "C:\\tools\\msys64\\mingw64\\bin\\ctest.exe",
-		"cmake.mingwSearchDirs": [
-			"C:\\tools\\msys64\\mingw64",
-		],
-		"C_Cpp.intelliSenseEngineFallback": "Disabled",
-		"editor.formatOnSave": true
-	}
+  "folders": [
+    {
+      "path": ".."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "build": true,
+      "vendors": true,
+      "tests/googletest": true
+    },
+    "cmake.cmakePath": "C:\\tools\\msys64\\mingw64\\bin\\cmake.exe",
+    "cmake.ctestPath": "C:\\tools\\msys64\\mingw64\\bin\\ctest.exe",
+    "cmake.mingwSearchDirs": ["C:\\tools\\msys64\\mingw64"],
+    "cmake.configureOnOpen": true,
+    "C_Cpp.intelliSenseEngineFallback": "Disabled",
+    "editor.formatOnSave": true
+  }
 }

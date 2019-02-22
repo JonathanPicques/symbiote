@@ -55,4 +55,3 @@ add_executable(symbiote_test
 add_subdirectory(tests/googletest)
 target_link_libraries(symbiote_test symbiote gtest_main)
 target_include_directories(symbiote_test PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
-target_include_directories(symbiote_test PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/tests/1.8.0/googletest/include>)
