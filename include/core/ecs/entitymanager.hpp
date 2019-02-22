@@ -187,12 +187,12 @@ namespace Symbiote {
 
 		template<typename... C>
 		auto Entity::HasComponent() const -> bool {
-			return (mManager->EntityHasComponent<C>(*this) && ...);
+			return (mManager->EntityHasComponent<C...>(*this));
 		}
 
 		template<typename... C>
 		auto Entity::HasAnyComponent() const -> bool {
-			return (mManager->EntityHasAnyComponent<C>(*this) && ...);
+			return mManager->EntityHasAnyComponent<C...>(*this);
 		}
 
 		template<typename... C>
@@ -318,7 +318,7 @@ namespace Symbiote {
 		template<typename... C>
 		auto EntityManager::EntityHasAnyComponent(const Entity &entityPointer) const -> bool {
 			AssertEntityPointerValid(entityPointer);
-			return ((EntityGetComponent<C>(entityPointer) != nullptr) && ...);
+			return ((EntityGetComponent<C>(entityPointer) != nullptr) || ...);
 		}
 
 		template<typename... C>
